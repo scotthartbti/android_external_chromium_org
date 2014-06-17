@@ -1,16 +1,10 @@
-// Copyright (c) 2012 The Chromium Authors. All rights reserved.
+// Copyright 2012 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
 package org.chromium.android_webview;
 
-import android.net.ParseException;
-import android.util.Log;
-
 import org.chromium.base.JNINamespace;
-import org.chromium.base.ThreadUtils;
-
-import java.util.concurrent.Callable;
 
 /**
  * AwCookieManager manages cookies according to RFC2109 spec.
@@ -63,6 +57,13 @@ public final class AwCookieManager {
      */
     public void removeSessionCookie() {
         nativeRemoveSessionCookie();
+    }
+
+    /**
+     * count total number of cookies
+     */
+    public int countCookies() {
+        return nativeCountCookies();
     }
 
     /**
@@ -125,4 +126,5 @@ public final class AwCookieManager {
 
     private native boolean nativeAllowFileSchemeCookies();
     private native void nativeSetAcceptFileSchemeCookies(boolean accept);
+    private native int nativeCountCookies();
 }
